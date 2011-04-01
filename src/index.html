@@ -1,0 +1,33 @@
+
+<html>
+  <body>
+    {% for greeting in greetings %}
+      {% if greeting.author %}
+        <b>{{ greeting.author.nickname }}</b> wrote:
+      {% else %}
+       An anonymous person wrote:
+      {% endif %}
+      <div>
+      <blockquote>{{ greeting.content|escape }}</blockquote>
+      <img src='img?img_id={{ greeting.key }}'></img></div> 
+                                    
+
+    {% endfor %}
+
+    <form action="/sign" enctype="multipart/form-data" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><label>Insert pic into the database: </label></div>
+      <div><input type="file" name="img"/></div>
+
+      <div><input type="submit" value="Sign Guestbook"></div>
+      
+    </form>
+    <form action="/compare" enctype="multipart/form-data" method="post">
+    <input type="file" name="img"/>
+    <div><input type=submit value="compare image"></div>
+  </form>
+
+    <a href="{{ url }}">{{ url_linktext }}</a>
+
+  </body>
+</html>
